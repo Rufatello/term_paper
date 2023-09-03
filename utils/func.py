@@ -1,5 +1,6 @@
 import json
-
+from pathlib import Path
+JSON_FILE = Path(__file__).resolve().parent / 'operations.json'
 
 def load_json(file_path):
     with open(file_path, encoding="utf-8") as f:
@@ -7,7 +8,7 @@ def load_json(file_path):
         return data
 
 
-file_json = load_json('operations.json')
+file_json = load_json(JSON_FILE)
 
 
 def date_last(UP):
@@ -17,7 +18,7 @@ def date_last(UP):
 
 
 sorted_data = date_last(file_json)
-
+print(sorted_data)
 
 # создаем пустой список для записи первых 5 значений
 five_str_load = []
