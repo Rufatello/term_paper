@@ -1,13 +1,13 @@
 import json
 
 
-def load_json():
-    with open('operations.json', encoding="utf-8") as f:
+def load_json(a):
+    with open(a, encoding="utf-8") as f:
         file_json_1 = json.load(f)
         return file_json_1
 
 
-file_json = load_json()
+file_json = load_json('operations.json')
 
 
 def date_last():
@@ -84,13 +84,8 @@ result_strings = []
 
 for string in numb_kart:
     for i in range(0, len(string), 4):
-        formatted_string = ' '.join(string[i:i + 4])
+        formatted_string = ' '.join([string[i:i + 4] for i in range(0, len(string), 4)])
         result_strings.append(formatted_string)
-
-
-
-        #formatted_string = ' '.join([string[i:i + 4] for i in range(0, len(string), 4)])
-        #result_strings.append(formatted_string)
 
 #result_list()
 
