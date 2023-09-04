@@ -1,0 +1,5 @@
+# Created by pytest automatically.
+venv/
+.idea/
+__pycache__/
+*.pyc
