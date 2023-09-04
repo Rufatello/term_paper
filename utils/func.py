@@ -1,5 +1,7 @@
 import json
 from pathlib import Path
+import datetime
+from datetime import datetime
 JSON_FILE = Path(__file__).resolve().parent / 'operations.json'
 
 def load_json(file_path):
@@ -18,7 +20,7 @@ def date_last(UP):
 
 
 sorted_data = date_last(file_json)
-print(sorted_data)
+
 
 # создаем пустой список для записи первых 5 значений
 five_str_load = []
@@ -47,7 +49,6 @@ five_list = load_str(sorted_data)
 # создаем 2 списка для записи в них наименования банка и наименоваие счета
 numb_bank = [] # имя банка
 numb_kart = [] # имя счета
-
 
 def function_five_load(an):
     '''функция извлекает все статусы из списка и разделяет
@@ -96,8 +97,9 @@ for list_bank, s, list_numb in zip(numb_bank, five_str_load, result_strings):
     description = s['description']
     name = s['operationAmount']['currency']['name']
     summ_operation = s['operationAmount']['amount']
-    date = s['date']
+    date = datetime.strptime(s["date"], "%Y-%m-%dT%H:%M:%S.%f").strftime("%d.%m.%Y")
     to = s['to'][:-14].replace('Счет ', '')
-    print(f'{date[:10].replace("-", ".")} {description}\n'
-          f'{list_bank} {list_numb} -> Счет **{to[2:]}\n'
+    list_bank_1 = f'{list_bank} ' if list_bank else ''
+    print(f'{date} {description}\n'
+          f'{list_bank_1}{list_numb} -> Счет **{to[2:]}\n'
           f'{summ_operation} {name}\n')
